@@ -111,16 +111,17 @@ function drawChart(data, xProperty) {
         {
             display: 'Obesity (%)',
             value: 'obesity'
+        }  
+        ,
+        {
+            display: 'Poverty (%)',
+            value: 'poverty'
         }]
 
         yAxisLabels = [
             {
                 display: 'Lacks Healthcare (%)',
                 value: 'healthcare'
-            },
-            {
-                display: 'Povert (%)',
-                value: 'poverty'
             }
         
         
@@ -173,16 +174,14 @@ function drawChart(data, xProperty) {
         .attr('r', radius)
         .attr('fill', 'blue')
 
-        var circleText = chartArea.selectAll()    
-        .data(data)    
+        var circleText = chartArea.selectAll() 
+       
+        .data(data)   
         .enter()    
         .append("text")    
         .merge(dots) 
-        .transition()
-        .duration(500)
         .text(d => d.abbr)    
         .attr("x", d => xScale(d.income))
-        
         // look at this data point 
         // poverty property and apply return that 
         //x coordinate    
@@ -190,8 +189,12 @@ function drawChart(data, xProperty) {
         .attr("class","stateText") 
         // .stateText class in d3Style.css stying 
         //for circle text    
-        .attr("font-size","9");      
-        console.log(data);
+        .attr("font-size","9")  
+        .transition()
+        .duration(500)    
+      
+        // console.log(data);
+
 
         // dots.append("text")
         // .attr("dx",12)
